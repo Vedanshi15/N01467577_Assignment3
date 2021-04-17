@@ -1,15 +1,20 @@
-﻿
+﻿@model IEnumerable<n01467577_Assignment3.Models.Teacher>
 @{
     ViewBag.Title = "ListTeachers";
 }
 
 <div class="containerlist">
+    <div id="addTeacherlink">
+        <nav>
+            <a class="navlink" href="/Teacher/NewTeacher">ADD TEACHER</a>
+        </nav>
+    </div>
     <h2>List of Teachers</h2>
     <form action="/Teacher/ListTeachers" method="GET">
-        <input type="text" name="Salary" autocomplete="off" placeholder="Salary"/>
-        <input type="submit" value="Search" />
+        <input type="text" name="Salary" autocomplete="off" placeholder="Salary" />
+        <input type="submit" value="Search" id="submit"/>
     </form>
-    
+    <span>@Model.Count() Result(s) Found</span>
     @foreach (var Teacher in Model)
     {
         <div class="listitem row">
@@ -17,4 +22,36 @@
         </div>
     }
 </div>
+<style>
+    .containerlist {
+        background-color:white;
+        padding-left:10px;
+    }
+    .navlink {
+        padding-top: 20px;
+        font-size:20px;
+        float:right;
+        padding-right:20px;
+        color:black;
+        font-weight:bold;
+    }
+    h2 {
+        padding-top:10px;
+        padding-bottom:10px;
+    }
+    #submit {
+        background-color:black;
+        color:white;
+    }
+    form {
+        margin-bottom:20px;
+    }
+    nav a:hover {
+        color: blue;
+        text-decoration: none;
+    }
+    #submit:hover {
+        background-color: gray;
+    }
+</style>
 

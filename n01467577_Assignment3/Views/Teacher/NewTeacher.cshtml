@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewBag.Title = "NewTeacher";
+}
+
+<div id="containershow">
+    <nav>
+        <a class="navlink" href="/Teacher/ListTeachers">Back To Teachers</a>
+    </nav>
+    <form method="POST" action="/Teacher/Create" name="form_Teacher" onsubmit="return validateData();">
+        <h2>New Teacher</h2>
+        <div class="inputrow">
+            <label for="TeacherFname">First Name:</label>
+            <input type="text" id="TeacherFname" name="TeacherFname" />
+
+        </div>
+        <div class="inputrow">
+            <label for="TeacherLname">Last Name:</label>
+            <input type="text" id="TeacherLname" name="TeacherLname" />
+
+        </div>
+        <div class="inputrow">
+            <label for="EmployeeNumber">Employee Number:</label>
+            <input type="text" id="EmployeeNumber" name="EmployeeNumber" />
+        </div>
+        <div class="inputrow">
+            <label for="HireDate">Hire Date:</label>
+            <input type="text" id="HireDate" name="HireDate" />
+        </div>
+        <div class="inputrow">
+            <label for="Salary">Salary:</label>
+            <input type="text" id="Salary" name="Salary" />
+        </div>
+        <div class="inputrow">
+            <input type="submit" value="Add Teacher" id="submit"/>
+        </div>
+    </form>
+
+</div>
+<script>
+     function validateData() {      
+        var formHandle = document.forms.form_Teacher;
+        var TeacherFname = formHandle.TeacherFname;
+        var TeacherLname = formHandle.TeacherLname;
+        var EmployeeNumber = formHandle.EmployeeNumber;
+        var HireDate = formHandle.HireDate;
+        var Salary = formHandle.Salary;
+            
+        //Validation
+        if (TeacherFname.value === "") {
+            TeacherFname.style.background = "red";
+            TeacherFname.focus();               
+            return false;
+        }
+        if (TeacherLname.value === "") {
+            TeacherLname.style.background = "red";
+            TeacherLname.focus();                
+            return false;
+        }
+        if (EmployeeNumber.value === "") {
+            EmployeeNumber.style.background = "red";
+            EmployeeNumber.focus();                
+            return false;
+        }
+        if (HireDate.value === "") {
+            HireDate.style.background = "red";
+            HireDate.focus();
+            return false;
+        }
+        if (Salary.value === "") {
+            Salary.style.background = "red";
+            Salary.focus();
+            return false;
+        }       
+     }
+</script>
+<style>
+    .containerlist {
+        background-color: white;
+        padding-left: 10px;
+    }
+
+    .navlink {
+        padding-top: 20px;
+        font-size: 20px;
+        float: right;
+        padding-right: 20px;
+        color: black;
+        font-weight: bold;
+    }
+    nav a:hover{
+        color: blue;
+       text-decoration:none;
+    }
+    h2 {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    input{
+        margin-bottom:10px;
+    }
+    #submit {
+        background-color: black;
+        color: white;
+        margin-top: 20px;
+        padding: 5px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    #submit:hover {
+        background-color: gray;
+    }
+</style>

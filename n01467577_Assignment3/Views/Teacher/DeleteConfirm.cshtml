@@ -1,18 +1,19 @@
 ﻿@model n01467577_Assignment3.Models.Teacher
 @{
-    ViewBag.Title = "ShowTeacher";
+    ViewBag.Title = "DeleteConfirm";
 }
-
 
 <div id="containershow">
     <nav>
-        <a class="navlink" href="/Teacher/ListTeachers">Back To Teachers</a>
+        <a class="navlink" href="/Teacher/ShowTeacher/@Model.TeacherId">Cancel</a>
     </nav>
-    <h2>@Model.TeacherFname @Model.TeacherLname</h2>
-    <p>Employee Number: @Model.EmployeeNumber</p>
-    <p>Salary: @Model.Salary</p>
-    <p>Hire Date: @Model.HireDate.ToShortDateString()</p>
-    <a class="dellink" href="/Teacher/DeleteConfirm/@Model.TeacherId">Delete</a>
+    <h2>Are you sure you want to delete @Model.TeacherFname @Model.TeacherLname?</h2>
+    <p>This action cannot be undone.</p>
+    <form method="POST" action="/Teacher/DeleteTeacher/@Model.TeacherId">
+        <button class="delbutton">
+            Confirm Delete
+        </button>
+    </form>
 </div>
 <style>
     .containerlist {
@@ -21,7 +22,7 @@
 
     .navlink {
         padding-top: 20px;
-        font-size: 20px;
+        font-size: 25px;
         float: right;
         padding-right: 20px;
         color: black;
@@ -37,20 +38,16 @@
         padding-top: 10px;
         padding-bottom: 10px;
     }
-
-    .dellink {
-        background-color: black;
+    .delbutton {
+        background-color: red;
         color: white;
         margin-top: 20px;
         padding: 5px;
         font-size: 20px;
         font-weight: bold;
-       
     }
 
-    .dellink:hover {
+    .delbutton:hover {
         background-color: gray;
-        color:black;
-        text-decoration:none;
-     }
+    }
 </style>

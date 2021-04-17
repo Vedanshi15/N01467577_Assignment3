@@ -7,6 +7,7 @@ using System.Web.Http;
 using n01467577_Assignment3.Models;
 using MySql.Data.MySqlClient;
 using System.Diagnostics;
+using System.Web.Http.Cors;
 
 namespace n01467577_Assignment3.Controllers
 {
@@ -14,7 +15,58 @@ namespace n01467577_Assignment3.Controllers
     {
 
         private SchoolDbContext Teacher = new SchoolDbContext();
+        /// <summary>
+        /// It'll delete the Teacher from database if the ID of that Teacher is exists.
+        /// </summary>
+        /// <param name="id">The ID of the Teacher.</param>
+        /// <example>POST /api/TeacherData/DeleteTeacher/1</example>
+        [HttpPost]
+        public void DeleteTeacher(int id)
+        {
+            //Create connection with database
+            MySqlConnection Conn = Teacher.AccessDatabase();
 
+            //Open the connection between the web server and database
+            Conn.Open();
+            MySqlCommand cmd = Conn.CreateCommand();
+            //Query
+            cmd.CommandText = "Delete from Teachers where teacherId=@id";
+            //Passing Parameter
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Prepare();
+            cmd.ExecuteNonQuery();
+            Conn.Close();
+        }
+
+        /// <summary>
+        /// It'll add the new Teacher to the MySQL Database.
+        /// </summary>
+        /// <param name="NewTeacher">Passing all the information of teacher.</param>
+        /// <example>
+        /// POST api/TeacherData/AddTeacher
+        /// </example>
+        [HttpPost]
+        [EnableCors(origins: "*", methods: "*", headers: "*")]
+        public void AddTeacher([FromBody] Teacher NewTeacher)
+        {
+            //Create connection with database
+            MySqlConnection Conn = Teacher.AccessDatabase();
+            //Open the connection between the web server and database
+            Conn.Open();
+            MySqlCommand cmd = Conn.CreateCommand();
+            //Query
+            cmd.CommandText = "insert into teachers (teacherfname, teacherlname, employeenumber, hiredate, salary) values (@TeacherFname,@TeacherLname,@EmployeeNumber, @HireDate, @Salary)";
+            //Adding parameters
+            cmd.Parameters.AddWithValue("@TeacherFname", NewTeacher.TeacherFname);
+            cmd.Parameters.AddWithValue("@TeacherLname", NewTeacher.TeacherLname);
+            cmd.Parameters.AddWithValue("@EmployeeNumber", NewTeacher.EmployeeNumber);
+            cmd.Parameters.AddWithValue("@HireDate", NewTeacher.HireDate);
+            cmd.Parameters.AddWithValue("@Salary", NewTeacher.Salary);
+            cmd.Prepare();
+            cmd.ExecuteNonQuery();
+            Conn.Close();
+            //close the connection
+        }
         /// <summary>
         /// Returns a list of Teachers whose Salary is greater than or equal to entered salary
         /// </summary>

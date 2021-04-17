@@ -14,5 +14,7 @@ namespace n01467577_Assignment3.Models
         public DateTime HireDate;
         public decimal Salary;
         public string Classcode;
+       
     }
+
 }

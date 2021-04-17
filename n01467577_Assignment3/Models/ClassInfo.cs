@@ -12,5 +12,6 @@ namespace n01467577_Assignment3.Models
         public DateTime StartDate;
         public DateTime FinishDate;
         public string ClassName;
+        public Teacher Instructor;
     }
 }
