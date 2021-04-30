@@ -13,6 +13,7 @@
     <p>Salary: @Model.Salary</p>
     <p>Hire Date: @Model.HireDate.ToShortDateString()</p>
     <a class="dellink" href="/Teacher/DeleteConfirm/@Model.TeacherId">Delete</a>
+    <a class="updatelink" href="/Teacher/UpdateTeacher/@Model.TeacherId">Update</a>
 </div>
 <style>
     .containerlist {
@@ -53,4 +54,20 @@
         color:black;
         text-decoration:none;
      }
+
+    .updatelink {
+        background-color: black;
+        color: white;
+        margin-top: 20px;
+        margin-left:10px;
+        padding: 5px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .updatelink:hover {
+        background-color: gray;
+        color: black;
+        text-decoration: none;
+    }
 </style>

@@ -228,6 +228,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="ExtraData\CurlReq.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -252,6 +253,8 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="ExtraData\Teacher.json" />
+    <Content Include="ExtraData\wireframe.pdf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -283,6 +286,8 @@
     <Content Include="Views\Teacher\DeleteConfirm.cshtml" />
     <Content Include="Views\Teacher\NewTeacher.cshtml" />
     <Content Include="Views\Teacher\Error.cshtml" />
+    <Content Include="Views\Teacher\Update_Ajax.cshtml" />
+    <Content Include="Views\Teacher\UpdateTeacher.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

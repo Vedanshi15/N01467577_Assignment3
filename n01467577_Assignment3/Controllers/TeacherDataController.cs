@@ -15,6 +15,45 @@ namespace n01467577_Assignment3.Controllers
     {
 
         private SchoolDbContext Teacher = new SchoolDbContext();
+
+        /// <summary>
+        /// It will update an Teacher on the MySQL Database.
+        /// </summary>
+        /// <param name="TeacherInfo">An object with fields that map to the columns of the Teacher's table.</param>
+        /// <example>
+        /// POST api/TeacherData/UpdateTeacher/2 
+        /// The updated data will appear
+        /// </example>
+        [HttpPost]
+        [EnableCors(origins: "*", methods: "*", headers: "*")]
+        public void UpdateTeacher(int id, [FromBody] Teacher TeacherInfo)
+        {
+            //Object of a connection
+            MySqlConnection Conn = Teacher.AccessDatabase();
+            //Open the connection 
+            Conn.Open();
+            //Establish a new command for database
+            MySqlCommand cmd = Conn.CreateCommand();
+
+            //SQL QUERY
+            cmd.CommandText = "update teachers set teacherfname=@TeacherFname, teacherlname=@TeacherLname, employeenumber=@EmployeeNumber, hiredate=@HireDate  where teacherid=@TeacherId";
+            //Add Parameters
+            cmd.Parameters.AddWithValue("@TeacherFname", TeacherInfo.TeacherFname);
+            cmd.Parameters.AddWithValue("@TeacherLname", TeacherInfo.TeacherLname);
+            cmd.Parameters.AddWithValue("@EmployeeNumber", TeacherInfo.EmployeeNumber);
+            cmd.Parameters.AddWithValue("@HireDate", TeacherInfo.HireDate);
+            cmd.Parameters.AddWithValue("@Salary", TeacherInfo.Salary);
+            cmd.Parameters.AddWithValue("@TeacherId", id);
+            cmd.Prepare();
+
+            cmd.ExecuteNonQuery();
+
+            Conn.Close();
+
+
+        }
+
+
         /// <summary>
         /// It'll delete the Teacher from database if the ID of that Teacher is exists.
         /// </summary>

@@ -15,6 +15,48 @@ namespace n01467577_Assignment3.Controllers
             return View();
         }
 
+        public ActionResult Error()
+        {
+            return View();
+        }
+        // GET : /Teacher/UpdateTeacher/{id}
+        public ActionResult UpdateTeacher(int id)
+        {
+
+            TeacherDataController controller = new TeacherDataController();
+            Teacher SelectedTeacher = controller.FindTeacher(id);
+
+            return View(SelectedTeacher);
+        }
+        //GET : /Teacher/Update_Ajax
+        public ActionResult Update_Ajax(int id)
+        {
+            TeacherDataController controller = new TeacherDataController();
+            Teacher SelectedTeacher= controller.FindTeacher(id);
+
+            return View(SelectedTeacher);
+        }
+        // POST : /Teacher/UpdateTeacher/{id}
+        [HttpPost]
+        public ActionResult UpdateTeacher(int id, string TeacherFname, string TeacherLname, string EmployeeNumber, DateTime HireDate, decimal Salary)
+        {
+            if (TeacherFname == "" || TeacherLname == "" || EmployeeNumber == "")
+            {
+                return RedirectToAction("Error");
+            }
+            Teacher TeacherInfo = new Teacher();
+            TeacherInfo.TeacherFname = TeacherFname;
+            TeacherInfo.TeacherLname = TeacherLname;
+            TeacherInfo.EmployeeNumber = EmployeeNumber;
+            TeacherInfo.HireDate = HireDate;
+            TeacherInfo.Salary = Salary;
+
+            TeacherDataController controller = new TeacherDataController();
+            controller.UpdateTeacher(id, TeacherInfo);
+
+            return RedirectToAction("ShowTeacher/" + id);
+        }
+
         //GET : /Teacher/New_Ajax
         public ActionResult New_Ajax()
         {
